@@ -44,3 +44,7 @@ django-admin permet specialement  de crée configurer administrer un projet djan
 - L'affichage du message d'erreur et debugage depend des parametre de l'app dans notre fichier settings.py il a un atribut DEBUG detype boolean s'il est a true il s'affichera dans le cas contraire non  
 
 ## 6 - Le dépôt git
+- la chose qui n'a rien a faire dans le depos est la base de donnée db.sqlite3 
+- les fichier qui devrais ce retouvé dans le depos : 
+  - pyproject.toml 
+  - uv.lock
