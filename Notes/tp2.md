@@ -1,0 +1,3 @@
+# TP2
+## Model par fichier :
+1. Django repons: " No changes detected " car le contenue de la class ou model Entreprise n'as pas changé ; dans notre cas ca nous apprend que  django consider les fichier qui sont exposer par __init__.py  et q'il disont efectue une comparaison entre la migration precedente et la migration 	actuell  une migration est en quel que soret un fichier qui permetra de crée la table corespondent a notre model .
