@@ -18,3 +18,7 @@
 
      - on_delete=models.PROTECT se traduit par ON DELETE RESTRICT (ou PROTECT selon les SGBD).
 
+## Administration 
+
+1. Alors lors de la suppretion on lui dit qu'elle ne peut pas suprimer l'entreprise , oui c'est bien ce qu'elle voulais 
+2. si j'avais choisie l'autre option ca aurrai suprimer l'entreprise ,les offre,les stage et les tuteur ,ce qui n'est pas demandé ("CASCAD")

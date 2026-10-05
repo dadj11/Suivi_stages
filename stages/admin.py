@@ -25,15 +25,17 @@ class EntrepriseAdmin(admin.ModelAdmin):
 
 @admin.register(Etudiant)
 class EtudiantAdmin(admin.ModelAdmin):
-    list_display = ['matricule', 'promotion']
+    list_display = ['matricule', 'promotion', 'nom', 'prenom', 'email']
     search_fields = ['matricule', 'promotion', 'nom', 'prenom', 'email']
 
 @admin.register(TuteurEntreprise)
 class TuteurAdmin(admin.ModelAdmin):
+    list_display = ['nom', 'prenom', 'email', ]
     search_fields = ['nom', 'prenom', 'email']
 
 @admin.register(EnseignantReferent)
 class EnseignantAdmin(admin.ModelAdmin):
+    list_display = ['nom', 'prenom', 'email']
     search_fields = ['nom', 'prenom', 'email']
 
 

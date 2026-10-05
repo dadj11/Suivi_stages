@@ -12,7 +12,7 @@ class Stage(models.Model):
     date_fin = models.DateField()
 
     entreprise = models.ForeignKey(
-        Entreprise, on_delete=models.CASCADE, related_name="stages"
+        Entreprise, on_delete=models.PROTECT, related_name="stages"
     )
     tuteur_entreprise = models.ForeignKey(
         TuteurEntreprise,

@@ -10,20 +10,20 @@ class Candidature(models.Model):
 
     stage = models.ForeignKey(
         Stage,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         related_name="candidatures",
         null=True,
         blank=True,
     )
     offre = models.ForeignKey(
         Offre,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         related_name="candidatures",
         null=True,
         blank=True,
     )
     etudiant = models.ForeignKey(
-        Etudiant, on_delete=models.CASCADE, related_name="candidatures"
+        Etudiant, on_delete=models.PROTECT, related_name="candidatures"
     )
 
     class Meta:
