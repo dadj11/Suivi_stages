@@ -1,20 +1,63 @@
 {% extends "stages/base.html" %}
-{% block title %}Toutes les offres{% endblock %}
+
+{% block title %}Toutes les offres de stage{% endblock %}
+
 {% block content %}
-<h1>Toutes les offres</h1>
-{% for offre in offres %}
-    <div>
-        <h2><a href="{% url 'stages:detail_offre' offre.pk %}">{{ offre.titre }}</a></h2>
-        <p>Entreprise: <a href="{% url 'stages:detail_entreprise' offre.entreprise.pk %}">{{ offre.entreprise.nom }}</a></p>
-        {% if offre.date_debut or offre.date_fin %}
-            <p>Dates: {{ offre.date_debut|default:"À définir" }} – {{ offre.date_fin|default:"À définir" }}</p>
-        {% endif %}
-        <p>Places: {{ offre.nb_places }}</p>
-        <p>Compétences demandées:
-            {% for competence in offre.competences.all %}{{ competence.libelle }}{% if not forloop.last %}, {% endif %}{% empty %}Aucune compétence précisée{% endfor %}
-        </p>
+<div class="page-header">
+    <h1>Toutes les offres</h1>
+    <p class="subtitle">Liste complète des opportunités de stage disponibles.</p>
+</div>
+
+{% if offres %}
+    <div class="table-container">
+        <table class="modern-table">
+            <thead>
+                <tr>
+                    <th>Poste / Titre</th>
+                    <th>Entreprise</th>
+                    <th>Période</th>
+                    <th>Places</th>
+                    <th>Compétences</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for offre in offres %}
+                    <tr>
+                        <td class="col-titre">
+                            <a href="{% url 'stages:detail_offre' offre.pk %}"><strong>{{ offre.titre }}</strong></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'stages:detail_entreprise' offre.entreprise.pk %}" class="entreprise-link">
+                                {{ offre.entreprise.nom }}
+                            </a>
+                        </td>
+                        <td class="col-dates">
+                            {% if offre.date_debut or offre.date_fin %}
+                                {{ offre.date_debut|default:"À définir" }} – {{ offre.date_fin|default:"À définir" }}
+                            {% else %}
+                                <span class="text-muted">À définir</span>
+                            {% endif %}
+                        </td>
+                        <td class="col-center">
+                            <span class="badge-places">{{ offre.nb_places }}</span>
+                        </td>
+                        <td>
+                            <div class="competences-tags">
+                                {% for competence in offre.competences.all %}
+                                    <span class="tag">{{ competence.libelle }}</span>
+                                {% empty %}
+                                    <span class="text-muted">Non spécifiée</span>
+                                {% endfor %}
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-{% empty %}
-    <p>Aucune offre disponible.</p>
-{% endfor %}
+{% else %}
+    <div class="empty-state">
+        <p>Aucune offre de stage n'est disponible pour le moment.</p>
+    </div>
+{% endif %}
 {% endblock %}

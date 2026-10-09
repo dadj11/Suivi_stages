@@ -1,12 +1,41 @@
 {% extends "stages/base.html" %}
+
 {% block title %}Entreprises partenaires{% endblock %}
+
 {% block content %}
-<h1>Entreprises partenaires</h1>
-<ul>
-{% for entreprise in entreprises %}
-<li><a href="{% url 'stages:detail_entreprise' entreprise.pk %}">{{ entreprise.nom }}</a> — {{ entreprise.ville }}</li>
-{% empty %}
-<li>Aucune entreprise enregistrée pour le moment.</li>
-{% endfor %}
-</ul>
+<div class="page-header">
+    <h1>Entreprises partenaires</h1>
+    <p class="subtitle">Liste des structures accueillant nos étudiants en stage.</p>
+</div>
+
+{% if entreprises %}
+    <div class="table-container">
+        <table class="modern-table">
+            <thead>
+                <tr>
+                    <th>Nom de l'entreprise</th>
+                    <th>Ville</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entreprise in entreprises %}
+                    <tr>
+                        <td class="col-titre">
+                            <a href="{% url 'stages:detail_entreprise' entreprise.pk %}">
+                                <strong>{{ entreprise.nom }}</strong>
+                            </a>
+                        </td>
+                        <td>
+                            <span class="ville-badge">{{ entreprise.ville }}</span>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <div class="empty-state">
+        <p>Aucune entreprise enregistrée pour le moment.</p>
+    </div>
+{% endif %}
 {% endblock %}

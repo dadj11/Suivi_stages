@@ -72,6 +72,11 @@ offre2, _ = Offre.objects.get_or_create(
     defaults={'description': 'Refonte de l\'interface interne.', 'nb_places': 1}
 )
 
+offre1.competences.set([competences['Django'], competences['Python'], competences['PostgreSQL']])
+
+# 3. Association des compétences à offre2 (Développeur Web Laravel)
+offre2.competences.set([competences['PHP / Laravel'], competences['JavaScript']])
+
 stage1, _ = Stage.objects.get_or_create(
     etudiant=etudiant1,
     defaults={
